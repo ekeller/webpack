@@ -15,9 +15,6 @@ module.exports = {
         test: /\.js$/,
         exclude: /node-modules/,
         use: "babel-loader",
-        query: {
-          presets: ["react"],
-        },
       },
       {//Svgs
         test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
@@ -37,8 +34,10 @@ module.exports = {
     new CleanWebpackPlugin(),
   ],
   devServer: {
-    inline: true,
-    contentBase: "./public",
+    static: {
+      directory: path.join(__dirname, 'public'),
+    },
+    compress: true,
     hot: true,
     port: 3333,
   },
